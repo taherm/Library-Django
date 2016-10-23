@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <form action="/accounts/auth/" method="post" target="_top">{% csrf_token %}
+{% for field in form %}
+    <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+{% endfor %}
+      <input type="submit" value="Login" />
+    </form>
+</div>
+<div>
+<p>or <a href="/accounts/register/">Register</a> to be a validated user</p>
+<p> Back To <a href="/">Home</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% if books.count > 0 %}
+<h1>Book Search</h1>
+
+{% for book in books %}
+<tr>
+	<td>{{ book.title }}</td><td>{{book.isbn}}</td><td>{% for author in book.author.all %} {{author.name}}{% endfor %}</td>
+	<td>{% for pub in book.pub_n.all %} {{pub.name}}{% endfor %}</td><td>{{book.num_copy}}</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr><td><h2>No Books Found</h2></td></tr>
+{% endif %}

@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+
+{% block content %}
+{% if message %}
+<h3><span class="label label-danger">{{message}}</span></h3>
+{% else %}
+<h3>Book Search</h3>
+{% csrf_token %}
+<input type="text" id="search" name="search" />
+<table class="table table-hover" id="book-search">
+
+</table>
+<h1>Book List | Status</h1>
+
+<table class="table table-hover">
+<tr><th>Book Title</th><th>ISBN</th><th>Author</th><th>Publications</th><th>Number of Copies</th></tr>
+{% for book in books %}
+<tr>
+	<td>{{ book.title }}</td><td>{{book.isbn}}</td><td>{% for author in book.author.all %} {{author.name}}{% endfor %}</td>
+	<td>{% for pub in book.pub_n.all %} {{pub.name}}{% endfor %}</td><td>{{book.num_copy}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

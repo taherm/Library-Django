@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if message %}
+<h3><span class="label label-danger">{{message}}</span></h3>
+{% else %}
+<form action="/members/create/" method="post">{% csrf_token %}
+<ul>
+{{form.as_ul}}	
+</ul>	
+<input type="submit" name="submit" value="Register Member">
+</form>
+{% endif %}
+{% endblock %}
